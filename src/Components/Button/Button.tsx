@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
 function Button({ label }) {
-    return <button>{label}</button>
+    return <button data-testid='button'>{label}</button>
 }
 
 export default Button
