@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import Button from '../Button';
 
 afterEach(cleanup)
@@ -28,3 +28,10 @@ it('matches snapshot', () => {
   const view = render(<Button label={'Snapshot'} />);
   expect(view).toMatchSnapshot();
 });
+
+it('calls onClick prop when clicked', () => {
+  const handleClick = jest.fn()
+  render(<Button label={'Test Click'} onClick={handleClick}/>)
+  fireEvent.click(screen.getByText('Test Click'))
+  expect(handleClick).toHaveBeenCalledTimes(1)
+})
